@@ -1,6 +1,5 @@
 # windows_to_USB_Ubuntu
 An AI assisted code created to write Windows ISO to USB
-Windows Bootable USB Creator
 
 This Python script creates a bootable USB drive from a Windows ISO file on Linux systems. It provides a graphical user interface (GUI) to select the ISO and USB drive, partitions and formats the USB, and copies the ISO contents to make it bootable for installing Windows. The tool is designed for ease of use and supports multiple Linux distributions.
 
