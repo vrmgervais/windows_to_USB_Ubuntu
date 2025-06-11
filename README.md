@@ -28,7 +28,7 @@ This Python script creates a bootable USB drive from a Windows ISO file on Linux
 **Option 1: Run the Python Script Directly**
 - Clone the Repository:
 ```
-git clone https://github.com/your-username/windows-bootable-usb-creator.git
+git clone https://github.com/vrmgervais/windows_to_USB_Ubuntu.git
 cd windows-bootable-usb-creator
 ```
 **Install Python Dependencies:**
@@ -51,7 +51,7 @@ sudo python3 create_bootable_usb.py
 **Option 2: Build and Run the Standalone Executable**
 **Clone the Repository (if not already done):**
 ```
-git clone https://github.com/your-username/windows-bootable-usb-creator.git
+git clone https://github.com/vrmgervais/windows_to_USB_Ubuntu.git
 cd windows-bootable-usb-creator
 ```
 **Install Build Dependencies:**
