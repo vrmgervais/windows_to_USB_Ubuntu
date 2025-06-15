@@ -1,4 +1,8 @@
 ##NOT WORKING YET - WILL INSTALL AS EXPECTED BUT DOES NOT BOOT FROM INTERNAL DRIVE, OR SHOW INTERNAL DRIVE AS BOOTABLE##
+# NOTE: The bash script (create_windows_usb.sh) is working as expected. The content of this README can be applied to the bash script functionality #
+# The Python scripts do not work (yet) #
+# This will be updated as tested #
+
 # windows_to_USB_Ubuntu
 An AI assisted code created to write Windows ISO to USB
 
