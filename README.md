@@ -1,4 +1,4 @@
-# NOTE: The bash script (create_windows_usb.sh) is working as expected (Tested and built on PopOS 22.04). The content of this README can be applied to the bash script functionality #
+# NOTE: The bash script (iso-to-usb.sh) is working as expected (Tested and built on PopOS 22.04). The content of this README can be applied to the bash script functionality #
 # The Python script runs a GUI to do the same as the bash script #
 
 # Write Windows ISO to USB drive under Ubuntu #
