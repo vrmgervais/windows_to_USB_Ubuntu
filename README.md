@@ -1,96 +1,95 @@
-##NOT WORKING YET - WILL INSTALL AS EXPECTED BUT DOES NOT BOOT FROM INTERNAL DRIVE, OR SHOW INTERNAL DRIVE AS BOOTABLE##
 # NOTE: The bash script (create_windows_usb.sh) is working as expected. The content of this README can be applied to the bash script functionality #
-# The Python scripts do not work (yet) #
-# This will be updated as tested #
+# The Python script runs a GUI to do the same as the bash script #
 
 # windows_to_USB_Ubuntu
 An AI assisted code created to write Windows ISO to USB
 
-This Python script creates a bootable USB drive from a Windows ISO file on Linux systems. It provides a graphical user interface (GUI) to select the ISO and USB drive, partitions and formats the USB, and copies the ISO contents to make it bootable for installing Windows. The tool is designed for ease of use and supports multiple Linux distributions.
+Requirements and Instructions for Creating a Bootable Windows USB
+Overview
+This document describes the requirements, dependencies, and steps to run the iso-to-usb.py Python script, which creates a bootable Windows USB drive from a Windows ISO file on a Linux system. The script features a graphical user interface (GUI) for selecting the ISO and USB device, ensures UEFI compatibility, and includes safeguards to prevent the Windows bootloader from installing on the USB.
+System Requirements
+    • Operating System: Linux distribution (tested on Ubuntu/Debian-based systems).
+    • User Privileges: Root access (script must be run with sudo).
+    • Hardware:
+        ◦ A USB drive with at least 8 GB capacity (16 GB recommended).
+        ◦ Sufficient disk space for the Windows ISO file (typically 4–8 GB).
+    • Windows ISO: A valid Windows ISO file (e.g., Windows 11 24H2) containing /efi, /boot, and /sources/install.wim.
+Dependencies
+The script requires the following software packages, available in Ubuntu/Debian repositories:
+    • Python 3: For running the script.
+        ◦ Package: python3
+    • Tkinter: Python’s GUI library for the interface.
+        ◦ Package: python3-tk
+    • lsblk: Lists block devices (USB detection).
+        ◦ Package: util-linux
+    • parted: Manages disk partitions.
+        ◦ Package: parted
+    • mkfs.vfat: Formats FAT32 partitions.
+        ◦ Package: dosfstools
+    • mkfs.ntfs: Formats NTFS partitions.
+        ◦ Package: ntfs-3g
+    • partprobe: Updates partition table.
+        ◦ Package: parted
+    • wipefs: Wipes filesystem signatures.
+        ◦ Package: util-linux
+    • mount: Mounts ISO and USB partitions.
+        ◦ Package: util-linux
+    • rsync: Copies files to USB.
+        ◦ Package: rsync
+    • pv (optional): Displays file copy progress.
+        ◦ Package: pv
+Install Dependencies
+Run the following command to install all required packages:
+sudo apt update
+sudo apt install python3 python3-tk util-linux parted dosfstools ntfs-3g rsync pv
+Verify Tkinter:
+python3 -c "import tkinter"
+If no errors appear, Tkinter is installed.
+Script Setup
+    1. Save the Script:
+        ◦ Copy the iso-to-usb.py script to a directory (e.g., /home/user/win-to-usb/).
+        ◦ Example filename: iso-to-usb.py.
+        ◦ Ensure the script is executable:
+          chmod +x /home/user/win-to-usb/iso-to-usb.py
+    2. Prepare ISO and USB:
+        ◦ Download a Windows ISO file (e.g., Win11_24H2_EnglishInternational_x64.iso) and note its path.
+        ◦ Insert a USB drive (e.g., /dev/sdb) with sufficient capacity. Warning: All data on the USB will be erased.
+Running the Script
+    1. Launch the Script:
+        ◦ Open a terminal and run the script with sudo:
+          sudo python3 /home/user/win-to-usb/iso-to-usb.py
+    2. Using the GUI:
+        ◦ Select ISO: Click “Browse” to choose the Windows ISO file.
+        ◦ Select USB: Choose a USB device from the dropdown (e.g., sdb (14.8G, Flash Disk)). Click “Refresh” if the device doesn’t appear.
+            ▪ Note: Be careful when selecting devices. /dev/sda, is typically an internal drive. Make sure the USB drive you select is NOT the internal drive of your PC and in fact the USB drive youi intent to write to. A warning dialog will appear if /dev/sda is selected.
+        ◦ Confirm: Check “I understand and want to proceed” to acknowledge data loss on the USB.
+        ◦ Start: Click “Start” to begin the process.
+        ◦ Monitor the progress bar and log area (below the progress bar) for status updates.
+    3. Output:
+        ◦ On success, a popup confirms the USB is ready, with instructions to ensure the Windows bootloader installs on the internal drive:
+            ▪ Set the internal drive as the first boot device in BIOS/UEFI.
+            ▪ Disconnect other drives if possible.
+            ▪ Install to unallocated space.
+        ◦ You may have to unmount the drive(s) if still mounted in your system.
+        ◦ On failure, a popup displays “Failed to create bootable USB. Check the log for details.” Copy the log text for troubleshooting.
+Troubleshooting
+    • No USB Devices in Dropdown:
+        ◦ Run: lsblk -d -o NAME,SIZE,TYPE,MODEL,TRAN,RM | grep usb
+        ◦ Ensure the USB is inserted and removable (RM=1).
+    • Error in Log:
+        ◦ Copy the log area text, especially “Error:” or “Traceback:” lines, and review for issues (e.g., invalid ISO, USB in use).
+    • Invalid ISO:
+        ◦ Verify: file /path/to/iso (should show ISO 9660).
+        ◦ Check contents: sudo mount -o loop /path/to/iso /mnt; ls /mnt/efi /mnt/boot /mnt/sources/install.wim; sudo umount /mnt.
+    • USB Issues:
+        ◦ Check mounts: mount | grep /dev/sdb.
+        ◦ Unmount if needed: sudo umount /dev/sdb1 /dev/sdb2.
+Notes
+    • The script creates two partitions: a 1 GB FAT32 BOOT partition and an NTFS INSTALL partition for the remaining space.
+    • It uses rsync with specific flags (-rltD --no-owner --no-group --no-perms) to handle FAT32 compatibility.
+    • The script filters USB devices to show only removable drives (TRAN=usb, RM=1) to prevent internal drive selection.
+For support, provide the log output and details of the ISO and USB used.
 
-**Features**
-
-- GUI Interface: Built with Tkinter for selecting ISO files and USB drives.
-- Automatic Dependency Installation: Installs required system tools (e.g., parted, rsync) based on the Linux distribution (Ubuntu, Fedora, Arch, etc.).
-- Optimized File Copying: Uses rsync for faster file transfers and parallelizes copying of large files.
-- Cross-Distro Support: Detects package managers (apt, dnf, pacman) for broader Linux compatibility.
-- Standalone Executable: Can be built into a single executable using PyInstaller for easy distribution.
-
-**Requirements**
-**System**
-- Operating System: Linux (tested on Pop!_OS 22.04, compatible with Ubuntu, Debian, Fedora, Arch)
-- Root Privileges: Required for USB partitioning, formatting, and mounting
-- USB Drive: At least 8 GB, will be erased during the process
-- Windows ISO File: A valid Windows installation ISO (Tested and working with Win11_24H2_EnglishInternational_x64.iso)
-
-**Software**
-- Python 3: Version 3.6 or higher
-- System Tools: lsb-release, parted, ntfs-3g, rsync, curl, p7zip-full, udisks2, dosfstools, pv, xterm, python3-tk (automatically installed by the script if missing)
-- Python Modules: distro (install with pip install distro)
-- PyInstaller: For building the standalone executable (install with pip install pyinstaller)
-
-**Installation and Usage**
-**Option 1: Run the Python Script Directly**
-- Clone the Repository:
-```
-git clone https://github.com/vrmgervais/windows_to_USB_Ubuntu.git
-cd windows-bootable-usb-creator
-```
-**Install Python Dependencies:**
-```
-pip install distro
-```
-**Run the Script:**
-```
-sudo python3 create_bootable_usb.py
-```
-- The sudo command is required for USB operations.
-- The script will automatically install missing system tools.
-
-**Use the GUI:**
-- Click "Browse" to select a Windows ISO file.
-- Click "Auto-Detect USB" to select the target USB drive (e.g., /dev/sdX).
-- Click "Create Bootable USB" to start the process.
-- Warning: The USB drive will be erased.
-
-**Option 2: Build and Run the Standalone Executable**
-**Clone the Repository (if not already done):**
-```
-git clone https://github.com/vrmgervais/windows_to_USB_Ubuntu.git
-cd windows-bootable-usb-creator
-```
-**Install Build Dependencies:**
-```
-pip install distro pyinstaller
-```
-**Build the Executable:**
-```
-python3 setup.py
-```
-The executable will be created at dist/bootable-usb-creator.
-
-**Run the Executable:**
-```
-chmod +x dist/bootable-usb-creator
-sudo ./dist/bootable-usb-creator
-```
-The GUI will appear, and usage is the same as above.
-
-**Expected Outcome**
-
-- The script formats the USB drive with a GPT partition table, creating a FAT32 boot partition and an NTFS partition for the Windows installer.
-- The Windows ISO contents are copied to the USB drive, with the boot.wim file placed in the boot partition.
-- Upon completion, a success message is displayed, and the USB drive is ready to boot a computer for Windows installation (ensure the system is set to boot from USB in BIOS/UEFI).
-- The process may take 10-30 minutes, depending on the USB drive's speed (USB 3.0 recommended for faster writes).
-
-**Notes**
-- Backup USB Data: The USB drive will be completely erased during the process.
-- Cross-Distro Compatibility: The script supports Debian-based (Ubuntu, Pop!_OS), Fedora, and Arch-based distros. Other Linux distros may require manual dependency installation.
-- System Tools: The script installs required tools automatically, but ensure internet access for package downloads.
-**Troubleshooting:**
-- If the GUI doesn’t appear, verify python3-tk is installed: sudo apt-get install python3-tk.
-- If the executable fails, run the Python script directly to debug: sudo python3 create_bootable_usb.py.
-- For build issues, check PyInstaller logs or ensure distro is installed.
 
 **Contributing**
 Contributions are welcome! Please open an issue or submit a pull request for bug fixes, feature enhancements, or additional distro support.
@@ -99,5 +98,6 @@ Contributions are welcome! Please open an issue or submit a pull request for bug
 This project is licensed under the MIT License. See the LICENSE file for details.
 
 **Acknowledgments**
-Built with Python and Tkinter for a user-friendly experience.
+Bash script works, tested on Ubuntu (PopOS 22.04)
+GUI built with Python and Tkinter for a user-friendly experience.
 Inspired by the need for a simple, Linux-based tool to create Windows bootable USBs.
