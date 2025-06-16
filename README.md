@@ -44,8 +44,9 @@ The script requires the following software packages, available in Ubuntu/Debian 
         
 **Install Dependencies**
 Run the following command to install all required packages:
-`sudo apt update`
-`sudo apt install python3 python3-tk util-linux parted dosfstools ntfs-3g rsync pv`
+
+``sudo apt update``
+``sudo apt install python3 python3-tk util-linux parted dosfstools ntfs-3g rsync pv``
 
 Verify Tkinter:
 `python3 -c "import tkinter"`
