@@ -19,28 +19,28 @@ This document describes the requirements, dependencies, and steps to run the iso
 
 **Dependencies**
 The script requires the following software packages, available in Ubuntu/Debian repositories:
-    - Python 3: For running the script.
-        ◦ Package: python3
-    - Tkinter: Python’s GUI library for the interface.
-        ◦ Package: python3-tk
-    - lsblk: Lists block devices (USB detection).
-        - Package: util-linux
-    - parted: Manages disk partitions.
-        ◦ Package: parted
-    - mkfs.vfat: Formats FAT32 partitions.
-        ◦ Package: dosfstools
-    - mkfs.ntfs: Formats NTFS partitions.
-        ◦ Package: ntfs-3g
-    - partprobe: Updates partition table.
-        ◦ Package: parted
-    - wipefs: Wipes filesystem signatures.
-        ◦ Package: util-linux
-    - mount: Mounts ISO and USB partitions.
-        ◦ Package: util-linux
-    - rsync: Copies files to USB.
-        ◦ Package: rsync
-    - pv (optional): Displays file copy progress.
-        ◦ Package: pv
+- Python 3: For running the script.
+    ◦ Package: python3
+- Tkinter: Python’s GUI library for the interface.
+    ◦ Package: python3-tk
+- lsblk: Lists block devices (USB detection).
+    - Package: util-linux
+- parted: Manages disk partitions.
+    ◦ Package: parted
+- mkfs.vfat: Formats FAT32 partitions.
+    ◦ Package: dosfstools
+- mkfs.ntfs: Formats NTFS partitions.
+    ◦ Package: ntfs-3g
+- partprobe: Updates partition table.
+    ◦ Package: parted
+- wipefs: Wipes filesystem signatures.
+    ◦ Package: util-linux
+- mount: Mounts ISO and USB partitions.
+    ◦ Package: util-linux
+- rsync: Copies files to USB.
+    ◦ Package: rsync
+- pv (optional): Displays file copy progress.
+    ◦ Package: pv
         
 **Install Dependencies**
 Run the following command to install all required packages:
