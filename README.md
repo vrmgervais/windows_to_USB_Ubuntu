@@ -1,8 +1,12 @@
-# NOTE: The bash script (create_windows_usb.sh) is working as expected. The content of this README can be applied to the bash script functionality #
+# NOTE: The bash script (create_windows_usb.sh) is working as expected (Tested and built on PopOS 22.04). The content of this README can be applied to the bash script functionality #
 # The Python script runs a GUI to do the same as the bash script #
 
-# windows_to_USB_Ubuntu
+# Write Windows ISO to USB drive under Ubuntu #
 An AI assisted code created to write Windows ISO to USB
+
+# Why? #
+
+Becasue I cannot find any program that does this.
 
 **Requirements and Instructions for Creating a Bootable Windows USB**
 
