@@ -49,7 +49,8 @@ Run the following command to install all required packages:
 ``sudo apt install python3 python3-tk util-linux parted dosfstools ntfs-3g rsync pv``
 
 Verify Tkinter:
-`python3 -c "import tkinter"`
+
+``python3 -c "import tkinter"``
 
 If no errors appear, Tkinter is installed.
 
