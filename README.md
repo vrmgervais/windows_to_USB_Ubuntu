@@ -4,9 +4,9 @@
 # Write Windows ISO to USB drive under Ubuntu #
 An AI assisted code created to write Windows ISO to USB
 
-# Why? #
+## Why? ##
 
-Becasue I cannot find any program that does this.
+Because I cannot find any program that does this.
 
 **Requirements and Instructions for Creating a Bootable Windows USB**
 
