@@ -19,7 +19,8 @@ This document describes the requirements, dependencies, and steps to run the iso
 
 **Dependencies**
 The script requires the following software packages, available in Ubuntu/Debian repositories:
-- Python 3: For running the script ---> Package: python3
+- Python 3: For running the script
+    - Package: python3
 - Tkinter: Python’s GUI library for the interface.
     - Package: python3-tk
 - lsblk: Lists block devices (USB detection).
