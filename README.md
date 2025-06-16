@@ -26,21 +26,21 @@ The script requires the following software packages, available in Ubuntu/Debian 
 - lsblk: Lists block devices (USB detection).
     - Package: util-linux
 - parted: Manages disk partitions.
-    ◦ Package: parted
+    - Package: parted
 - mkfs.vfat: Formats FAT32 partitions.
-    ◦ Package: dosfstools
+    - Package: dosfstools
 - mkfs.ntfs: Formats NTFS partitions.
-    ◦ Package: ntfs-3g
+    - Package: ntfs-3g
 - partprobe: Updates partition table.
-    ◦ Package: parted
+    - Package: parted
 - wipefs: Wipes filesystem signatures.
-    ◦ Package: util-linux
+    - Package: util-linux
 - mount: Mounts ISO and USB partitions.
-    ◦ Package: util-linux
+    - Package: util-linux
 - rsync: Copies files to USB.
-    ◦ Package: rsync
+    - Package: rsync
 - pv (optional): Displays file copy progress.
-    ◦ Package: pv
+    - Package: pv
         
 **Install Dependencies**
 Run the following command to install all required packages:
@@ -53,10 +53,10 @@ Verify Tkinter:
 If no errors appear, Tkinter is installed.
 
 **Script Setup**
-    - **Save the Script:**
-        ◦ Copy the iso-to-usb.py script to a directory (e.g., /home/user/win-to-usb/).
-        ◦ Example filename: iso-to-usb.py.
-        ◦ Ensure the script is executable:
+1) **Save the Script:**
+    - Copy the iso-to-usb.py script to a directory (e.g., /home/user/win-to-usb/).
+    - Example filename: iso-to-usb.py.
+    - Ensure the script is executable:
         `chmod +x /home/user/win-to-usb/iso-to-usb.py`
     - **Prepare ISO and USB:**
         ◦ Download a Windows ISO file (e.g., Win11_24H2_EnglishInternational_x64.iso) and note its path.
