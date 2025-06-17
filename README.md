@@ -1,5 +1,5 @@
-# NOTE: The bash script (create_windows_usb.sh) is is required to be in the same folder as the file called create_windows_usb_gui.py (This Python script needs it). This has been tested and built on PopOS 22.04.#
-# The Python script runs a GUI create the Windows USB#
+# NOTE: The bash script (create_windows_usb.sh) is is required to be in the same folder as the file called create_windows_usb_gui.py (This Python script needs it). This has been tested and built on PopOS 22.04. #
+# The Python script runs a GUI create the Windows USB #
 
 # Write Windows ISO to USB drive under Ubuntu #
 An AI assisted code created to write Windows ISO to USB
